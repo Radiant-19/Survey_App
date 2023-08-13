@@ -4,10 +4,13 @@ const cookieSession = require('cookie-session');
 const passport= require('passport');
 const keys =require('./config/keys');
 const authroutes =require('./routes/authRoutes');
+const bodyParser =require('body-parser');
 require('./models/user');
+require('./models/Surveys');
 require('./services/passport');
 mongoose.connect(keys.mongoURI);
 const app=express();
+app.use(bodyParser.json());
 app.use(
     cookieSession(
         {
@@ -16,8 +19,13 @@ app.use(
         }
     )
 );
+
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 authroutes(app);
+require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app);
 const PORT =process.env.PORT||5000;
 app.listen(PORT);

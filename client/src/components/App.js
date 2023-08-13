@@ -4,9 +4,10 @@ import {BrowserRouter,Route} from 'react-router-dom'
 import { connect } from "react-redux";
 import * as actions from '../actions';
 import Header from './Header';
+import Landing from "./Landing";
 const Dashboard =()=><h2>gg</h2>
 const SurveyNew =()=><h2>survey</h2>
-const Landing =()=><h2>landing</h2>
+
 
 
 class App extends Component
